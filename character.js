@@ -75,7 +75,7 @@ function hitPoints() {
   }
 }
 
-// Funksjoner for å få
+// Funksjoner for å få input fra HTML-form
 
 function getName() {
   var sheet = document.getElementById("sheet");
