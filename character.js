@@ -12,7 +12,6 @@ const player = {
     smarts: null,
     endurance: null,
     charisma: null
-
   },
 
   body: {
@@ -75,6 +74,8 @@ function hitPoints() {
     }
   }
 }
+
+// Funksjoner for å få
 
 function getName() {
   var sheet = document.getElementById("sheet");
