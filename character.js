@@ -43,7 +43,6 @@ function getName() {
   var sheet = document.getElementById("sheet");
   var name = document.getElementById("characterName").value;
   player.name = name;
-  sheet.innerHTML = "<li>Name: " + name + "</li>";
 }
 
 function rollStats() {
@@ -58,7 +57,4 @@ function rollStats() {
   player.stats.smarts = smarts;
   player.stats.endurance = endurance;
   player.stats.charisma = charisma;
-
-
-
 }
