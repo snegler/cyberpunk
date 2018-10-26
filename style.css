@@ -21,6 +21,13 @@ background-color: black;
 
 }
 
+#advTextParagraph{
+
+  height: 50vh;
+}
+
+
+
 
 #advTextDiv{
   font-size: xx-large;
@@ -32,6 +39,8 @@ background-color: black;
   border-radius: 5px;
   padding: 1%;
   font-family: "Lucida Console", Monaco, monospace;
+  height: 70vh;
+  width: 70%;
 
 }
 
