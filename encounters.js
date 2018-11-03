@@ -8,12 +8,18 @@ var buttonText2 = "";
 var buttonText3 = "";
 var adventuretext = "";
 var adventureprogress = 0;
+var nextArea = 0;
+var northlocation = 0;
+var southlocation = 0;
+var eastlocation = 0;
+var westlocation = 0;
+
 
 
 //Dette representerer ting som ligger i en ekstern database
 //Vi må anta at vi ønsker å bruke en god del forkjellige dialogvalg, og disse må kunne ligge i databasen
 //Derfor må vi ha mange knapper, og de må ha faste funksjoner på onclick. så Fjerner vi bare dem når de er borte og ikke i bruk.
-//Denne funksjonen later som om vi henter info om et nytt sted fra databasen
+//Denne funksjonen later som om vi henter info om et nytt sted fra databasen.
 function getNewInfo(){
 if (adventureprogress === 0){
 
@@ -30,11 +36,19 @@ buttonText2 = "I instantly regretted it. The skin around the connector had regro
 buttonCaption3 = "";//denne knappen har ikke noe caption, og derfor vises den ikke.
 buttonText3 = "Denne teksten vil aldri se dagens lys.";
 
+buttonCaption4 = "" //route north
+
+buttonCaption5 = "" //route east
+
+buttonCaption6 = "I got up from my chair." //route south
+southlocation = 1;
+
+buttonCaption7 = "" //route west
 
 
 }
 
-if (adventureprogress === 1)
+if (adventureprogress === 1){
 
 
 adventuretext = "The stale air filled the hole in my skull. I smeared on some of the anti-viral mud and plugged the hole thoroughly before I got up.<br><br> Thank God I hadn't shat myself.  I hated when that happened.<br><br> We had killed the wrong guy in there. Kicking up shit in the dead section. We had been looking for one of the many thousands of wanted felons hiding in the fringe code.<br><br><br> Shoot enough corpses in the foot and one might prove to be still alive. <br> We had done it a houndred times.<br>Picking up ghoul ID-tags. It could net you a nice bit of credits...<br><br>Whatever Julia shot..that was no fucking ghoul....";
@@ -51,14 +65,32 @@ buttonText3 = "Denne teksten vil aldri se dagens lys.";
 
 
 
+
+}
 }
 
 
 
+//This makes the value of the next location that is stored in the DB based on the option chosen.
+function moveNorth(){
+adventureprogress = northlocation;
+newEncounter();
+}
 
+function moveEast(){
+adventureprogress = eastlocation;
+newEncounter();
+}
 
+function moveSouth(){
+adventureprogress = southlocation;
+newEncounter();
+}
 
-
+function moveWest(){
+adventureprogress = westlocation;
+newEncounter();
+}
 
 
 
@@ -72,6 +104,12 @@ function nextEncounter(){
 document.getElementById("textoption1").value = buttonCaption1;
 document.getElementById("textoption2").value = buttonCaption2;
 document.getElementById("textoption3").value = buttonCaption3;
+document.getElementById("northMoveoption").value = buttonCaption4;
+document.getElementById("eastMoveoption").value = buttonCaption5;
+document.getElementById("southMoveoption").value = buttonCaption6;
+document.getElementById("westMoveoption").value = buttonCaption7;
+
+
 addEncounterText();
 hidebuttons();
 }
@@ -84,7 +122,6 @@ hidebuttons();
 // videre i eventyret.
 function newEncounter(){
 getNewInfo();
-adventureprogress = adventureprogress + 1;
 var currentText = document.getElementById("advTextParagraph").innerHTML;
 var newText =  currentText + "<br><br>" + adventuretext + "<br><br>";
 document.getElementById("advTextParagraph").innerHTML = newText;
