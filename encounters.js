@@ -13,6 +13,14 @@ var northlocation = 0;
 var southlocation = 0;
 var eastlocation = 0;
 var westlocation = 0;
+var buttonCaption4 = "";
+var buttonCaption4 = "";
+var buttonCaption5 = "";
+var buttonCaption5 = "";
+var buttonCaption6 = "";
+var buttonCaption6 = "";
+var buttonCaption7 = "";
+var buttonCaption7 = "";
 
 
 
@@ -36,14 +44,14 @@ buttonText2 = "I instantly regretted it. The skin around the connector had regro
 buttonCaption3 = "";//denne knappen har ikke noe caption, og derfor vises den ikke.
 buttonText3 = "Denne teksten vil aldri se dagens lys.";
 
-buttonCaption4 = "" //route north
+buttonCaption4 = ""; //route north
 
-buttonCaption5 = "" //route east
+buttonCaption5 = ""; //route east
 
 buttonCaption6 = "I got up from my chair." //route south
 southlocation = 1;
 
-buttonCaption7 = "" //route west
+buttonCaption7 = ""; //route west
 
 
 }
@@ -75,6 +83,7 @@ buttonText3 = "Denne teksten vil aldri se dagens lys.";
 function moveNorth(){
 adventureprogress = northlocation;
 newEncounter();
+
 }
 
 function moveEast(){
@@ -84,6 +93,7 @@ newEncounter();
 
 function moveSouth(){
 adventureprogress = southlocation;
+
 newEncounter();
 }
 
@@ -93,6 +103,15 @@ newEncounter();
 }
 
 
+
+
+
+
+function scrolldown(){
+  var elem = document.getElementById("advTextParagraph");
+    elem.scrollTop = elem.scrollHeight;
+
+}
 
 
 
@@ -108,10 +127,6 @@ document.getElementById("northMoveoption").value = buttonCaption4;
 document.getElementById("eastMoveoption").value = buttonCaption5;
 document.getElementById("southMoveoption").value = buttonCaption6;
 document.getElementById("westMoveoption").value = buttonCaption7;
-
-
-addEncounterText();
-hidebuttons();
 }
 
 
@@ -125,6 +140,8 @@ getNewInfo();
 var currentText = document.getElementById("advTextParagraph").innerHTML;
 var newText =  currentText + "<br><br>" + adventuretext + "<br><br>";
 document.getElementById("advTextParagraph").innerHTML = newText;
+//scrolls down
+scrolldown()
 nextEncounter();
 }
 
@@ -136,6 +153,7 @@ function addAdventureText1(){
 var currentText = document.getElementById("advTextParagraph").innerHTML;
 var newText =  currentText + "<br>" + buttonText1 + "<br>";
 document.getElementById("advTextParagraph").innerHTML = newText;
+scrolldown()
 }
 
 
@@ -144,6 +162,7 @@ function addAdventureText2(){
   var currentText = document.getElementById("advTextParagraph").innerHTML;
   var newText =  currentText + "<br>" + buttonText2 + "<br>";
   document.getElementById("advTextParagraph").innerHTML = newText;
+  scrolldown()
 
 }
 
@@ -153,68 +172,6 @@ function addAdventureText3(){
   var currentText = document.getElementById("advTextParagraph").innerHTML;
   var newText =  currentText + "<br>" + buttonText3 + "<br>";
   document.getElementById("advTextParagraph").innerHTML = newText;
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//Denne koden fjerner knapper som ikke har caption. Dette kan nok kodes på den mer elegant måte....
-function hidebuttons(){
-if (document.getElementById("textoption1").value == ""){
-document.getElementById("textoption1").style.display = "none";
-}else{
-document.getElementById("textoption1").style.display = "block";
-}
-
-
-if (document.getElementById("textoption2").value == ""){
-document.getElementById("textoption2").style.display = "none";
-}else{
-document.getElementById("textoption2").style.display = "block";
-}
-
-if (document.getElementById("textoption3").value == ""){
-document.getElementById("textoption3").style.display = "none";
-}else{
-document.getElementById("textoption3").style.display = "block";
-}
-
-
-
-
+  scrolldown()
 
 }

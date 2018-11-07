@@ -9,7 +9,6 @@ background-color: black;
   background-color:#007399;;
       border: none;
       color: black;
-      padding: 15px 32px;
       text-align: center;
       text-decoration: none;
       display: inline-block;
@@ -24,13 +23,14 @@ background-color: black;
 #advTextParagraph{
 
   height: 50vh;
+  overflow-y: auto;
 }
 
 
 
 
 #advTextDiv{
-  font-size: xx-large;
+  font-size: x-large;
   text-align: left;
   background-color: #007399;
   border: 3px;
