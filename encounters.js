@@ -1,3 +1,11 @@
+// Show a console error in an alert box
+// Useful when the error is followed by a page reload
+// source: https://developer.chrome.com/devtools/docs/javascript-debugging#pause-on-exceptions
+window.onerror = function(message, url, line) {
+  alert(message + ', ' + url + ', ' + line);
+};
+
+
 
 //globale variabler
 var buttonCaption1 = "";
@@ -14,13 +22,10 @@ var southlocation = 0;
 var eastlocation = 0;
 var westlocation = 0;
 var buttonCaption4 = "";
-var buttonCaption4 = "";
-var buttonCaption5 = "";
 var buttonCaption5 = "";
 var buttonCaption6 = "";
-var buttonCaption6 = "";
 var buttonCaption7 = "";
-var buttonCaption7 = "";
+
 
 
 
@@ -48,7 +53,7 @@ buttonCaption4 = ""; //route north
 
 buttonCaption5 = ""; //route east
 
-buttonCaption6 = "I got up from my chair." //route south
+buttonCaption6 = "I got up from my chair."; //route south
 southlocation = 1;
 
 buttonCaption7 = ""; //route west
@@ -107,6 +112,58 @@ newEncounter();
 
 
 
+
+
+//Knappeskjuling 2.0!!!!
+//eventlistener som sjekker knappene er trykket på
+//variabler
+
+var b1 = document.getElementById("textoption1");
+var b2 = document.getElementById("textoption2");
+var b3 = document.getElementById("textoption3");
+
+
+//eventlisteners til knappene
+b1.addEventListener("click", addAdventureText1);
+b2.addEventListener("click", addAdventureText2);
+b3.addEventListener("click", addAdventureText3);
+
+
+
+//funksjonen som flytter skjuler knappene. Dette er dårlig kode...
+//Dette virker enda ikke. Alle knappene bli skjult....
+function hidebuttons(){
+
+if (b1.value){
+b1.style.display = "none";
+}else{
+b1.style.display = "block";
+}
+
+if (b2.value){
+b2.style.display = "none";
+}else{
+b2.style.display = "block";
+}
+
+if (b3.value){
+b3.style.display = "none";
+}else{
+b3.style.display = "block";
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+//scroller ned advTextParagraph når nye ting kommer inn.
 function scrolldown(){
   var elem = document.getElementById("advTextParagraph");
     elem.scrollTop = elem.scrollHeight;
@@ -141,7 +198,7 @@ var currentText = document.getElementById("advTextParagraph").innerHTML;
 var newText =  currentText + "<br><br>" + adventuretext + "<br><br>";
 document.getElementById("advTextParagraph").innerHTML = newText;
 //scrolls down
-scrolldown()
+scrolldown();
 nextEncounter();
 }
 
@@ -153,7 +210,9 @@ function addAdventureText1(){
 var currentText = document.getElementById("advTextParagraph").innerHTML;
 var newText =  currentText + "<br>" + buttonText1 + "<br>";
 document.getElementById("advTextParagraph").innerHTML = newText;
-scrolldown()
+scrolldown();
+document.getElementById("textoption1").value = "";
+hidebuttons();
 }
 
 
@@ -162,7 +221,9 @@ function addAdventureText2(){
   var currentText = document.getElementById("advTextParagraph").innerHTML;
   var newText =  currentText + "<br>" + buttonText2 + "<br>";
   document.getElementById("advTextParagraph").innerHTML = newText;
-  scrolldown()
+  scrolldown();
+  document.getElementById("textoption2").value = "";
+  hidebuttons();
 
 }
 
@@ -172,6 +233,8 @@ function addAdventureText3(){
   var currentText = document.getElementById("advTextParagraph").innerHTML;
   var newText =  currentText + "<br>" + buttonText3 + "<br>";
   document.getElementById("advTextParagraph").innerHTML = newText;
-  scrolldown()
+  scrolldown();
+  document.getElementById("textoption3").value = "";
+  hidebuttons();
 
 }

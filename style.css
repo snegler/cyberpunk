@@ -6,17 +6,13 @@ background-color: black;
 
 .option {
 
-  background-color:#007399;;
+  background-color:#007399;
       border: none;
       color: black;
       text-align: center;
       text-decoration: none;
-      display: inline-block;
       font-size: 16px;
       font-family: "Lucida Console", Monaco, monospace;
-
-
-
 
 }
 
@@ -32,7 +28,7 @@ background-color: black;
 #advTextDiv{
   font-size: x-large;
   text-align: left;
-  background-color: #007399;
+  background-color: green;
   border: 3px;
   border-color: #4e009b;
   border-style: solid;
