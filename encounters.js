@@ -8,23 +8,44 @@ window.onerror = function(message, url, line) {
 
 
 //globale variabler
-var buttonCaption1 = "";
-var buttonCaption2 = "";
-var buttonCaption3 = "";
-var buttonText1 = "";
-var buttonText2 = "";
-var buttonText3 = "";
+//addtext variabler
+var button1caption = "";
+var button2caption = "";
+var button3caption = "";
+var button1text = "";
+var button2text = "";
+var button3text = "";
+
 var adventuretext = "";
 var adventureprogress = 0;
 var nextArea = 0;
+
+
+//variabler som inneholder stedene som du kommer til hvis du reiser i en himmelretning
 var northlocation = 0;
 var southlocation = 0;
 var eastlocation = 0;
 var westlocation = 0;
-var buttonCaption4 = "";
-var buttonCaption5 = "";
-var buttonCaption6 = "";
-var buttonCaption7 = "";
+//Det som skal stå på knappene, 4 = N, 5 = E, 6 = S, 7 = w
+var button4caption = "";
+var button5caption = "";
+var button6caption = "";
+var button7caption = "";
+
+
+
+
+
+
+//arrayene som holder oversikt over hvilke valg som er tatt.
+var startlocation = [0,0,1,1,1,0,1]
+
+
+
+
+
+
+
 
 
 
@@ -33,30 +54,43 @@ var buttonCaption7 = "";
 //Vi må anta at vi ønsker å bruke en god del forkjellige dialogvalg, og disse må kunne ligge i databasen
 //Derfor må vi ha mange knapper, og de må ha faste funksjoner på onclick. så Fjerner vi bare dem når de er borte og ikke i bruk.
 //Denne funksjonen later som om vi henter info om et nytt sted fra databasen.
+//Det som mangler her er et system for å huske hvilke ting som allerede er gjort.
 function getNewInfo(){
 if (adventureprogress === 0){
+
+//vi må ha en array som viser hvilke av valgene som allerede er gjort.
+= []
 
 
 adventuretext = "<i>01100110011101010110001101101011.. I'm off man. I'm leaving this piss-stenched hellhole. No amount of credits can make me hook up again.</i> <br> <br> Julia left me while I was still inside the system. She was pissed and with good reason. Hell, I was more fragile than her with this shit, and she left first.....fuck..<br><br> I'd never have left..If it wasn't for her.";
 
 
-buttonCaption1 = "I gently removed the connector from my right temple";  // the text on the button
-buttonText1 = "The plug had been in too long, and some tissue had regrown around the hole. I wish the pain had jolted me out of my state of mind."; //the text that the button adds. This will have no effect on the game besides storyline.
+button1caption = "I gently removed the connector from my right temple";  // the text on the button
+button1text = "The plug had been in too long, and some tissue had regrown around the hole. I wish the pain had jolted me out of my state of mind."; //the text that the button adds. This will have no effect on the game besides storyline.
+button1hidden = true;
 
-buttonCaption2 = "Furious with her betrayal, I ripped the cord from my skull.";
-buttonText2 = "I instantly regretted it. The skin around the connector had regrown somewhat, and I tore off more than I would have wanted. Some blood trickled down on my sweatpants and made yet another stain.";
+button2caption = "Furious with her betrayal, I ripped the cord from my skull.";
+button2text = "I instantly regretted it. The skin around the connector had regrown somewhat, and I tore off more than I would have wanted. Some blood trickled down on my sweatpants and made yet another stain.";
+button2hidden = true;
 
-buttonCaption3 = "";//denne knappen har ikke noe caption, og derfor vises den ikke.
-buttonText3 = "Denne teksten vil aldri se dagens lys.";
+button3caption = "";//denne knappen har ikke noe caption, og derfor vises den ikke.
+button3text = "Denne teksten vil aldri se dagens lys.";
+button3hidden = true;
 
-buttonCaption4 = ""; //route north
+button4caption = ""; //route north
+button4hidden = true;
 
-buttonCaption5 = ""; //route east
+button5caption = ""; //route east
+button5hidden = true;
 
-buttonCaption6 = "I got up from my chair."; //route south
+
+button6caption = "I got up from my chair."; //route south
 southlocation = 1;
+button1hidden = true;
 
-buttonCaption7 = ""; //route west
+
+button7caption = ""; //route west
+button1hidden = true;
 
 
 }
@@ -67,14 +101,14 @@ if (adventureprogress === 1){
 adventuretext = "The stale air filled the hole in my skull. I smeared on some of the anti-viral mud and plugged the hole thoroughly before I got up.<br><br> Thank God I hadn't shat myself.  I hated when that happened.<br><br> We had killed the wrong guy in there. Kicking up shit in the dead section. We had been looking for one of the many thousands of wanted felons hiding in the fringe code.<br><br><br> Shoot enough corpses in the foot and one might prove to be still alive. <br> We had done it a houndred times.<br>Picking up ghoul ID-tags. It could net you a nice bit of credits...<br><br>Whatever Julia shot..that was no fucking ghoul....";
 
 
-buttonCaption1 = "I examined the fat-smudged monitor for any odd entries in the log.";  // the text on the button
-buttonText1 = "The greasy screen flickered with bits of code from our latest trip in the void. Ghoul code was mostly gibberish, and hard to read. The thing that Julia shot... well, it was gibberish as well, but the mass of code.. at least 5 terabytes.. what the hell?"; //the text that the button adds. This will have no effect on the game besides storyline.
+button1caption = "I examined the fat-smudged monitor for any odd entries in the log.";  // the text on the button
+button1text = "The greasy screen flickered with bits of code from our latest trip in the void. Ghoul code was mostly gibberish, and hard to read. The thing that Julia shot... well, it was gibberish as well, but the mass of code.. at least 5 terabytes.. what the hell?"; //the text that the button adds. This will have no effect on the game besides storyline.
 
-buttonCaption2 = "I tried to call Julia's place.";
-buttonText2 = "No reply. She's either fucked up on something, or about to get fucked up on something. I better stay out of it.";
+button2caption = "I tried to call Julia's place.";
+button2text = "No reply. She's either fucked up on something, or about to get fucked up on something. I better stay out of it.";
 
-buttonCaption3 = "";//denne knappen har ikke noe caption, og derfor vises den ikke.
-buttonText3 = "Denne teksten vil aldri se dagens lys.";
+button3caption = "";//denne knappen har ikke noe caption, og derfor vises den ikke.
+button3text = "Denne teksten vil aldri se dagens lys.";
 
 
 
@@ -130,36 +164,13 @@ b3.addEventListener("click", addAdventureText3);
 
 
 
-//funksjonen som flytter skjuler knappene. Dette er dårlig kode...
-//Dette virker enda ikke. Alle knappene bli skjult....
+
+
+//Alle mulige
 function hidebuttons(){
 
-if (b1.value){
-b1.style.display = "none";
-}else{
-b1.style.display = "block";
-}
-
-if (b2.value){
-b2.style.display = "none";
-}else{
-b2.style.display = "block";
-}
-
-if (b3.value){
-b3.style.display = "none";
-}else{
-b3.style.display = "block";
-}
-
-
 
 }
-
-
-
-
-
 
 
 
@@ -177,13 +188,14 @@ function scrolldown(){
 //Vi må også ha en kode som setter knappene i en tilfeldig rekkefølge.
 function nextEncounter(){
 
-document.getElementById("textoption1").value = buttonCaption1;
-document.getElementById("textoption2").value = buttonCaption2;
-document.getElementById("textoption3").value = buttonCaption3;
-document.getElementById("northMoveoption").value = buttonCaption4;
-document.getElementById("eastMoveoption").value = buttonCaption5;
-document.getElementById("southMoveoption").value = buttonCaption6;
-document.getElementById("westMoveoption").value = buttonCaption7;
+document.getElementById("textoption1").value = button1caption;
+document.getElementById("textoption2").value = button2caption;
+document.getElementById("textoption3").value = button3caption;
+document.getElementById("northMoveoption").value = button4caption;
+document.getElementById("eastMoveoption").value = button5caption;
+document.getElementById("southMoveoption").value = button6caption;
+document.getElementById("westMoveoption").value = button7caption;
+hidebuttons();
 }
 
 
@@ -197,33 +209,31 @@ getNewInfo();
 var currentText = document.getElementById("advTextParagraph").innerHTML;
 var newText =  currentText + "<br><br>" + adventuretext + "<br><br>";
 document.getElementById("advTextParagraph").innerHTML = newText;
-//scrolls down
 scrolldown();
 nextEncounter();
+
 }
 
 
 //Dette er funksjonene for hver knapp, og muligens alle options i spillet. De kan kanskje ligge i en egen fil...
-
-
 function addAdventureText1(){
 var currentText = document.getElementById("advTextParagraph").innerHTML;
-var newText =  currentText + "<br>" + buttonText1 + "<br>";
+var newText =  currentText + "<br>" + button1text + "<br>";
 document.getElementById("advTextParagraph").innerHTML = newText;
 scrolldown();
 document.getElementById("textoption1").value = "";
-hidebuttons();
+//hidebuttons();
 }
 
 
 function addAdventureText2(){
 
   var currentText = document.getElementById("advTextParagraph").innerHTML;
-  var newText =  currentText + "<br>" + buttonText2 + "<br>";
+  var newText =  currentText + "<br>" + button2text + "<br>";
   document.getElementById("advTextParagraph").innerHTML = newText;
   scrolldown();
   document.getElementById("textoption2").value = "";
-  hidebuttons();
+  //hidebuttons();
 
 }
 
@@ -231,10 +241,10 @@ function addAdventureText2(){
 function addAdventureText3(){
 
   var currentText = document.getElementById("advTextParagraph").innerHTML;
-  var newText =  currentText + "<br>" + buttonText3 + "<br>";
+  var newText =  currentText + "<br>" + button3text + "<br>";
   document.getElementById("advTextParagraph").innerHTML = newText;
   scrolldown();
   document.getElementById("textoption3").value = "";
-  hidebuttons();
+  //hidebuttons();
 
 }
